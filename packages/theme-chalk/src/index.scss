@@ -1,0 +1,4 @@
+// 全量引入入口：编译产物为 dist/index.css
+@use './common/var.scss';
+@use './base.scss';
+@use './button.scss';

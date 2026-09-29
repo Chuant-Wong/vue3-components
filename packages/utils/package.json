@@ -1,0 +1,21 @@
+{
+  "name": "@vc/utils",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/vc-utils.es.js",
+  "module": "./dist/vc-utils.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/vc-utils.es.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --skipLibCheck --module esnext --moduleResolution bundler --target es2020 --outDir dist src/index.ts"
+  }
+}

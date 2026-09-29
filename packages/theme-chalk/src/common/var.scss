@@ -1,0 +1,31 @@
+// 全局主题 CSS 变量（Element Plus 主题体系核心）
+:root {
+  // 品牌色
+  --vc-color-primary: #409eff;
+  --vc-color-success: #67c23a;
+  --vc-color-warning: #e6a23c;
+  --vc-color-danger: #f56c6c;
+  --vc-color-error: #f56c6c;
+  --vc-color-info: #909399;
+
+  // 文字
+  --vc-text-color-primary: #303133;
+  --vc-text-color-regular: #606266;
+
+  // 边框与填充
+  --vc-border-color: #dcdfe6;
+  --vc-fill-color-blank: #ffffff;
+
+  // 圆角
+  --vc-border-radius-base: 4px;
+  --vc-border-radius-round: 20px;
+
+  // 字体
+  --vc-font-size-base: 14px;
+  --vc-font-weight-primary: 500;
+
+  // 组件尺寸体系
+  --vc-component-size-large: 40px;
+  --vc-component-size-default: 32px;
+  --vc-component-size-small: 24px;
+}

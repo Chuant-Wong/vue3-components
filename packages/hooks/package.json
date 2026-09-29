@@ -1,0 +1,24 @@
+{
+  "name": "@vc/hooks",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/vc-hooks.es.js",
+  "module": "./dist/vc-hooks.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/vc-hooks.es.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --skipLibCheck --module esnext --moduleResolution bundler --target es2020 --outDir dist src/index.ts"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  }
+}

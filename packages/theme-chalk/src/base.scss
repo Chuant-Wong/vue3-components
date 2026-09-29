@@ -1,0 +1,6 @@
+// 基础 reset（保持保守，避免破坏宿主应用/文档站样式）
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

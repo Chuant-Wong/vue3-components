@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@vc/utils": ["packages/utils/src/index.ts"],
+      "@vc/hooks": ["packages/hooks/src/index.ts"],
+      "@vc/components": ["packages/components/index.ts"],
+      "@vc/components/*": ["packages/components/*"],
+      "@vc/theme-chalk": ["packages/theme-chalk/src/index.scss"]
+    }
+  },
+  "include": [
+    "packages/*/src/**/*.ts",
+    "packages/*/src/**/*.vue",
+    "packages/*/index.ts",
+    "packages/*/component.ts",
+    "packages/*/global.d.ts",
+    "docs/.vitepress/**/*.ts",
+    "docs/.vitepress/**/*.vue"
+  ]
+}

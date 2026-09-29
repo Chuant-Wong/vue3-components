@@ -1,0 +1,22 @@
+{
+  "name": "@vc/theme-chalk",
+  "version": "0.0.1",
+  "private": true,
+  "exports": {
+    ".": {
+      "sass": "./src/index.scss",
+      "default": "./src/index.scss"
+    },
+    "./*": "./*"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "node scripts/build-css.mjs"
+  },
+  "devDependencies": {
+    "sass": "^1.80.0"
+  }
+}

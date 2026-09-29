@@ -1,0 +1,21 @@
+{
+  "name": "@vc/docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "@vc/hooks": "workspace:*",
+    "@vc/theme-chalk": "workspace:*",
+    "@vc/utils": "workspace:*",
+    "element-plus": "^2.14.6",
+    "vue3-components": "workspace:*"
+  },
+  "devDependencies": {
+    "sass": "^1.80.0",
+    "vitepress": "^1.6.4"
+  }
+}

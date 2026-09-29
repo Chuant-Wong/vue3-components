@@ -1,0 +1,48 @@
+@use './config.scss' as *;
+
+// 当前 b() 块类名（如 'vc-button'），供嵌套场景下的 m() 拼接块级修饰符
+$current-block: null;
+
+// 生成 .vc-{block} 选择器，并记录块名
+@mixin b($block) {
+  $current-block: '#{$namespace}-#{$block}' !global;
+  .#{$current-block} {
+    @content;
+  }
+}
+
+// 生成 __element 子元素选择器（需嵌套在 b 内使用）
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+// 生成块级 --modifier 修饰符选择器（需嵌套在 b 内使用）。
+// 嵌套在 when() 内时自动降级为复合选择器（修饰符挂在块上，而非拼在状态类后）：
+//   b(button) { m(primary) }                 → .vc-button--primary
+//   b(button) { when(plain) { m(primary) } } → .vc-button.is-plain.vc-button--primary
+@mixin m($modifier) {
+  @if not $current-block {
+    @error 'm() 必须嵌套在 b() 内使用';
+  }
+  $parent: '#{&}';
+  @at-root {
+    @if $parent == '.#{$current-block}' {
+      .#{$current-block}--#{$modifier} {
+        @content;
+      }
+    } @else {
+      #{$parent}.#{$current-block}--#{$modifier} {
+        @content;
+      }
+    }
+  }
+}
+
+// 生成 .is-xxx 状态选择器
+@mixin when($state) {
+  &.is-#{$state} {
+    @content;
+  }
+}

@@ -1,0 +1,222 @@
+@use './mixins/mixins.scss' as *;
+
+// Button 组件样式：BEM 结构 + 组件级 CSS 变量做主题色映射
+@include b(button) {
+  // 组件级变量默认值（type/size 修饰符通过覆写这些变量实现换肤）
+  --vc-button-text-color: var(--vc-text-color-regular);
+  --vc-button-bg-color: var(--vc-fill-color-blank);
+  --vc-button-border-color: var(--vc-border-color);
+  --vc-button-hover-text-color: var(--vc-color-primary);
+  --vc-button-hover-bg-color: var(--vc-color-primary-light-9, #ecf5ff);
+  --vc-button-hover-border-color: var(--vc-color-primary-light-7, #c6e2ff);
+  --vc-button-active-bg-color: var(--vc-color-primary-light-9, #ecf5ff);
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--vc-component-size-default);
+  padding: 8px 15px;
+  font-size: var(--vc-font-size-base);
+  font-weight: var(--vc-font-weight-primary);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  vertical-align: middle;
+  appearance: none;
+  background-color: var(--vc-button-bg-color);
+  color: var(--vc-button-text-color);
+  border: 1px solid var(--vc-button-border-color);
+  border-radius: var(--vc-border-radius-base);
+  outline: none;
+  transition: 0.1s;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--vc-button-hover-text-color);
+    border-color: var(--vc-button-hover-border-color);
+    background-color: var(--vc-button-hover-bg-color);
+  }
+
+  &:active {
+    background-color: var(--vc-button-active-bg-color);
+    border-color: var(--vc-color-primary);
+    color: var(--vc-button-hover-text-color);
+  }
+
+  & + .vc-button {
+    margin-left: 12px;
+  }
+
+  // 类型修饰符：覆写组件级变量实现主题色切换
+  @include m(primary) {
+    --vc-button-text-color: #ffffff;
+    --vc-button-bg-color: var(--vc-color-primary);
+    --vc-button-border-color: var(--vc-color-primary);
+    --vc-button-hover-text-color: #ffffff;
+    --vc-button-hover-bg-color: var(--vc-color-primary-light-3, #79bbff);
+    --vc-button-hover-border-color: var(--vc-color-primary-light-3, #79bbff);
+    --vc-button-active-bg-color: var(--vc-color-primary-dark-2, #337ecc);
+  }
+
+  @include m(success) {
+    --vc-button-text-color: #ffffff;
+    --vc-button-bg-color: var(--vc-color-success);
+    --vc-button-border-color: var(--vc-color-success);
+    --vc-button-hover-text-color: #ffffff;
+    --vc-button-hover-bg-color: var(--vc-color-success-light-3, #95d475);
+    --vc-button-hover-border-color: var(--vc-color-success-light-3, #95d475);
+    --vc-button-active-bg-color: var(--vc-color-success-dark-2, #529b2e);
+  }
+
+  @include m(warning) {
+    --vc-button-text-color: #ffffff;
+    --vc-button-bg-color: var(--vc-color-warning);
+    --vc-button-border-color: var(--vc-color-warning);
+    --vc-button-hover-text-color: #ffffff;
+    --vc-button-hover-bg-color: var(--vc-color-warning-light-3, #eebe77);
+    --vc-button-hover-border-color: var(--vc-color-warning-light-3, #eebe77);
+    --vc-button-active-bg-color: var(--vc-color-warning-dark-2, #b88230);
+  }
+
+  @include m(danger) {
+    --vc-button-text-color: #ffffff;
+    --vc-button-bg-color: var(--vc-color-danger);
+    --vc-button-border-color: var(--vc-color-danger);
+    --vc-button-hover-text-color: #ffffff;
+    --vc-button-hover-bg-color: var(--vc-color-danger-light-3, #f89898);
+    --vc-button-hover-border-color: var(--vc-color-danger-light-3, #f89898);
+    --vc-button-active-bg-color: var(--vc-color-danger-dark-2, #c45656);
+  }
+
+  @include m(info) {
+    --vc-button-text-color: #ffffff;
+    --vc-button-bg-color: var(--vc-color-info);
+    --vc-button-border-color: var(--vc-color-info);
+    --vc-button-hover-text-color: #ffffff;
+    --vc-button-hover-bg-color: var(--vc-color-info-light-3, #b1b3b8);
+    --vc-button-hover-border-color: var(--vc-color-info-light-3, #b1b3b8);
+    --vc-button-active-bg-color: var(--vc-color-info-dark-2, #6d6d6d);
+  }
+
+  // 尺寸修饰符
+  @include m(large) {
+    height: var(--vc-component-size-large);
+    padding: 12px 19px;
+    font-size: 14px;
+  }
+
+  @include m(small) {
+    height: var(--vc-component-size-small);
+    padding: 5px 11px;
+    font-size: 12px;
+  }
+
+  // 朴素按钮
+  @include when(plain) {
+    --vc-button-bg-color: var(--vc-fill-color-blank);
+    --vc-button-hover-bg-color: var(--vc-fill-color-blank);
+    --vc-button-active-bg-color: var(--vc-fill-color-blank);
+
+    // 朴素 + 类型：彩色文字描边，hover 填充实色（文字转白）
+    @include m(primary) {
+      --vc-button-text-color: var(--vc-color-primary);
+      --vc-button-border-color: var(--vc-color-primary-light-5, #a0cfff);
+      --vc-button-hover-text-color: #ffffff;
+      --vc-button-hover-bg-color: var(--vc-color-primary);
+      --vc-button-hover-border-color: var(--vc-color-primary);
+      --vc-button-active-bg-color: var(--vc-color-primary-dark-2, #337ecc);
+    }
+
+    @include m(success) {
+      --vc-button-text-color: var(--vc-color-success);
+      --vc-button-border-color: var(--vc-color-success-light-5, #b3e19d);
+      --vc-button-hover-text-color: #ffffff;
+      --vc-button-hover-bg-color: var(--vc-color-success);
+      --vc-button-hover-border-color: var(--vc-color-success);
+      --vc-button-active-bg-color: var(--vc-color-success-dark-2, #529b2e);
+    }
+
+    @include m(warning) {
+      --vc-button-text-color: var(--vc-color-warning);
+      --vc-button-border-color: var(--vc-color-warning-light-5, #f3d19e);
+      --vc-button-hover-text-color: #ffffff;
+      --vc-button-hover-bg-color: var(--vc-color-warning);
+      --vc-button-hover-border-color: var(--vc-color-warning);
+      --vc-button-active-bg-color: var(--vc-color-warning-dark-2, #b88230);
+    }
+
+    @include m(danger) {
+      --vc-button-text-color: var(--vc-color-danger);
+      --vc-button-border-color: var(--vc-color-danger-light-5, #fab6b6);
+      --vc-button-hover-text-color: #ffffff;
+      --vc-button-hover-bg-color: var(--vc-color-danger);
+      --vc-button-hover-border-color: var(--vc-color-danger);
+      --vc-button-active-bg-color: var(--vc-color-danger-dark-2, #c45656);
+    }
+
+    @include m(info) {
+      --vc-button-text-color: var(--vc-color-info);
+      --vc-button-border-color: var(--vc-color-info-light-5, #c8c9cc);
+      --vc-button-hover-text-color: #ffffff;
+      --vc-button-hover-bg-color: var(--vc-color-info);
+      --vc-button-hover-border-color: var(--vc-color-info);
+      --vc-button-active-bg-color: var(--vc-color-info-dark-2, #6d6d6d);
+    }
+  }
+
+  // 圆角/圆形
+  @include when(round) {
+    border-radius: var(--vc-border-radius-round);
+  }
+
+  @include when(circle) {
+    border-radius: 50%;
+    padding: 8px;
+    width: var(--vc-component-size-default);
+
+    @include m(large) {
+      width: var(--vc-component-size-large);
+    }
+
+    @include m(small) {
+      width: var(--vc-component-size-small);
+      padding: 5px;
+    }
+  }
+
+  // 禁用态
+  @include when(disabled) {
+    &,
+    &:hover,
+    &:focus-visible,
+    &:active {
+      cursor: not-allowed;
+      opacity: 0.5;
+      color: var(--vc-button-text-color);
+      background-color: var(--vc-button-bg-color);
+      border-color: var(--vc-button-border-color);
+    }
+  }
+
+  // 加载态
+  @include when(loading) {
+    pointer-events: none;
+    position: relative;
+
+    // 内置 loading spinner
+    svg {
+      width: 1em;
+      height: 1em;
+      margin-right: 6px;
+      animation: vc-button-loading-rotate 0.8s linear infinite;
+    }
+  }
+}
+
+@keyframes vc-button-loading-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
